@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MAISON — New Collection</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@100;300;400&family=EB+Garamond:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --warm-white: #faf8f4;
+      --charcoal: #1b1a18;
+      --mid: rgb(22, 22, 22);
+      --light: #c8c0b5;
+      --accent: #8b6914;
+      --border: #e0d8cc;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-sans: 'Josefin Sans', sans-serif;
+      --font-cursive: 'Dancing Script', cursive;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--warm-white);
+      color: var(--charcoal);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor {
+      position: fixed;
+      width: 8px; height: 8px;
+      background: var(--charcoal);
+      border: 1px solid white;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease;
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 32px; height: 32px;
+      border: 1px solid var(--charcoal);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+      opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--charcoal); }
+
+    .nav-right {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--charcoal);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-right:hover { opacity: 0.6; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--charcoal);
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-right { display: none; }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 65px;
+        left: 0; right: 0;
+        background: rgba(250,248,244,0.98);
+        backdrop-filter: blur(8px);
+        flex-direction: column;
+        padding: 16px 24px 32px;
+        border-bottom: 1px solid var(--border);
+        gap: 0;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+      }
+
+      .nav-links a:last-child { border-bottom: none; }
+    }
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      position: relative;
+    }
+
+    .hero-left {
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-season {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-season::before {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: var(--light);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 7vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin-bottom: 40px;
+      color: var(--charcoal);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      line-height: 2;
+      max-width: 340px;
+      margin-bottom: 56px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm-white);
+      background: var(--charcoal);
+      padding: 16px 36px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: gap 0.2s;
+    }
+
+    .btn-ghost::after {
+      content: '→';
+      font-size: 0.8rem;
+    }
+
+    .btn-ghost:hover { gap: 14px; }
+
+    /* ── HERO RIGHT ── */
+    .hero-right {
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(160deg, #e8e0d0 0%, #d4c8b4 40%, #c4b89a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.03) 40px,
+        rgba(255,255,255,0.03) 80px
+      );
+    }
+
+    .hero-model-text {
+      font-family: var(--font-display);
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.40);
+      letter-spacing: 0.1em;
+      font-style: italic;
+      position: absolute;
+      bottom: 40px;
+      right: -20px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .hero-tag {
+      position: absolute;
+      top: 40px;
+      left: 32px;
+      background: var(--warm-white);
+      padding: 12px 20px;
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    .collection-number {
+      position: absolute;
+      bottom: 40px;
+      left: 32px;
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(26,24,21,0.1);
+      line-height: 1;
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--charcoal);
+      padding: 16px 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 18s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      font-family: var(--font-cursive);
+      font-size: 0.87rem;
+      font-weight: 100;
+      color: var(--cream);
+      padding: 0 40px;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      opacity: 0.7;
+    }
+
+    .marquee-dot {
+      color: var(--accent);
+      opacity: 1 !important;
+    }
+
+    /* ── COLLECTIONS ── */
+    .collections {
+      padding: 120px 48px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color:var(--mid);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    .view-all {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .view-all:hover { color: var(--charcoal); border-color: var(--charcoal); }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2px;
+    }
+
+    .collection-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .collection-card.featured {
+      grid-row: span 2;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .collection-card.featured .card-image {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 600px;
+    }
+
+    .collection-card:hover .card-image { transform: scale(1.04); }
+
+    /* Placeholder images using CSS */
+    .card-bg {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.6s ease;
+    }
+
+    .collection-card.featured .card-bg { min-height: 600px; }
+    .collection-card:hover .card-bg { transform: scale(1.03); }
+
+    .bg-1 { background: linear-gradient(160deg, #c4b49a 0%, #a8967a 100%); }
+    .bg-2 { background: linear-gradient(160deg, #d4cfc8 0%, #b8b0a4 100%); }
+    .bg-3 { background: linear-gradient(160deg, #1a1815 0%, #2e2a24 100%); }
+    .bg-4 { background: linear-gradient(160deg, #e8ddd0 0%, #d0c4b0 100%); }
+    .bg-5 { background: linear-gradient(160deg, #8b6914 0%, #6b4f10 100%); }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,24,21,0.5) 0%, transparent 50%);
+    }
+
+    .card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px;
+      color: var(--warm-white);
+      z-index: 1;
+    }
+
+    .card-category {
+      font-family: var(--font-sans);
+      font-size: 0.55rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .card-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 300;
+      line-height: 1.1;
+    }
+
+    .collection-card.featured .card-name { font-size: 2.4rem; }
+
+    .card-price {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+      margin-top: 8px;
+    }
+
+    .card-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.fabric-slide {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%;
+  height: 100%;
+  transform: translateX(100%);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.collection-card:hover .fabric-slide {
+  transform: translateX(0);
+}
+
+.fabric-swatch {
+  width: 100%;
+  height: 100%;
+}
+
+.swatch-1 {
+  background: 
+    url('Tan fit.jpg') center/cover no-repeat;
+  filter: contrast(1.1) saturate(1.2);
+}
+
+.swatch-2 {
+  background:
+    url('black.jpg') center/cover no-repeat;
+  filter: contrast(1.1) saturate(1.2);
+}
+
+.swatch-3 {
+  background:
+    url('Grey Fit.jpg') center/cover no-repeat;
+    filter: contrast(1.1) saturate(1.2);
+}
+
+.swatch-4 {
+  background:
+    url('Gold.jpg') center/cover no-repeat;
+  filter: contrast(1.1) saturate(1.2);
+}
+
+.swatch-5 {
+  background:
+    url('linen.jpg') center/cover no-repeat;
+  filter: contrast(1.1) saturate(1.2);
+}
+    /* ── BRAND STORY ── */
+    .brand-story {
+      padding: 120px 48px;
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .story-left .story-number {
+      font-family: var(--font-display);
+      font-size: 8rem;
+      font-weight: 300;
+      color: rgba(26,24,21,0.1);
+      line-height: 1;
+      margin-bottom: -20px;
+    }
+
+    .story-left h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .story-left h2 em { font-style: italic; color: var(--accent); }
+
+    .story-right p {
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 350;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+      line-height: 2.2;
+      margin-bottom: 24px;
+    }
+
+    .story-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 48px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .story-stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .story-stat-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── FEATURED PRODUCTS ── */
+    .featured-products {
+      padding: 120px 48px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .product-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-bg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card:hover .product-bg { transform: scale(1.05); }
+
+    .pbg-1 { background: linear-gradient(135deg, #e8e0d0, #c8bba8); }
+    .pbg-2 { background: linear-gradient(135deg, #2a2520, #1a1510); }
+    .pbg-3 { background: linear-gradient(135deg, #c4a882, #a88c64); }
+    .pbg-4 { background: linear-gradient(135deg, #d8d0c4, #c0b8aa); }
+
+    .product-label {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 300;
+      font-style: italic;
+      opacity: 0.17;
+      color: var(--charcoal);
+    }
+
+    .pbg-2 .product-label { color: var(--cream); }
+
+    .product-add {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: var(--charcoal);
+      color: var(--warm-white);
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px;
+      text-align: center;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .product-card:hover .product-add { transform: translateY(0); }
+
+    .product-info {
+      padding: 16px 4px;
+    }
+
+    .product-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .product-type {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter {
+      background: var(--charcoal);
+      padding: 100px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .newsletter h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.15;
+    }
+
+    .newsletter h2 em { font-style: italic; color: var(--accent); }
+
+    .newsletter p {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: rgba(245,240,232,0.5);
+      line-height: 2;
+      margin-top: 16px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(245,240,232,0.15);
+    }
+
+    .newsletter-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(245,240,232,0.15);
+    }
+
+    .newsletter-input::placeholder { color: rgba(245,240,232,0.3); }
+
+    .newsletter-submit {
+      background: var(--accent);
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm-white);
+      padding: 18px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-align: left;
+    }
+
+    .newsletter-submit:hover { background: #a07820; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 60px 48px 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      margin-bottom: 20px;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      line-height: 2;
+      max-width: 240px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--mid);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--charcoal); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copy {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+    }
+
+    footer a {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--charcoal); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up { animation: fadeUp 0.9s ease both; }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.25s; }
+    .d3 { animation-delay: 0.4s; }
+    .d4 { animation-delay: 0.55s; }
+    .d5 { animation-delay: 0.7s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .collections-grid { grid-template-columns: 1fr 1fr; }
+      .collection-card.featured { grid-row: span 1; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 24px; }
+      .collections { padding: 80px 24px; }
+      .collections-grid { grid-template-columns: 1fr; }
+      .brand-story { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+      .featured-products { padding: 80px 24px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .newsletter { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+      .footer-top { grid-template-columns: 1fr; padding: 0 24px; }
+      footer { padding: 60px 24px 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; padding: 0 24px; padding-top: 24px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV SECTION -->
+  <nav>
+    <a class="nav-logo" href="#">MAISON</a>
+    <div class="nav-links" id="nav-links">
+      <a href="#collections">Collections</a>
+      <a href="#about">About</a>
+      <a href="#product">New Arrivals</a>
+      <a href="#">Stores</a>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:16px;">
+    <a class="nav-right" href="#">Shop Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  </nav>
+
+  <!-- HERO SECTION-->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-season fade-up">SS 2025 Collection</div>
+      <h1 class="hero-title fade-up d1">
+        Wear<br>
+        <em>silence</em><br>
+        louder.
+      </h1>
+      <p class="hero-desc fade-up d2">
+        Crafted for those who speak through fabric. Each piece is a quiet statement — refined, intentional, timeless.
+      </p>
+      <div class="hero-actions fade-up d3">
+        <a class="btn-primary" href="#collections">Explore Collection</a>
+        <a class="btn-ghost" href="#about">Our Story</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-image-placeholder">
+        <div class="hero-tag">New Arrival</div>
+        <div class="hero-model-text">SS25</div>
+        <div class="collection-number">01</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE SECTION-->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">New Collection</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Sustainably Made</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Free Shipping Over $200</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">SS 2025</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Timeless Pieces</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Handcrafted Details</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <!-- repeat -->
+      <span class="marquee-item">New Collection</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Sustainably Made</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Free Shipping Over $200</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">SS 2025</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Timeless Pieces</span>
+      <span class="marquee-item marquee-dot">✦</span>
+      <span class="marquee-item">Handcrafted Details</span>
+      <span class="marquee-item marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- COLLECTIONS SECTION-->
+  <section class="collections" id="collections">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Curated for you</div>
+        <h2 class="section-title">Shop by<br><em>Collection</em></h2>
+      </div>
+      <a class="view-all" href="#">View All Collections</a>
+    </div>
+
+    <div class="collections-grid">
+
+      <div class="collection-card featured">
+        <div class="card-bg bg-1">
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <div class="card-category">Featured · SS 2025</div>
+            <div class="card-name">The Minimal<br>Wardrobe</div>
+            <div class="card-price">From $120</div>
+          </div>
+        </div>
+        <div class="fabric-slide">
+          <div class="fabric-swatch swatch-1"></div>
+        </div>
+        
+      </div>
+
+      <div class="collection-card">
+        <div class="card-bg bg-3">
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <div class="card-category">Evening</div>
+            <div class="card-name">Dark Elegance</div>
+            <div class="card-price">From $240</div>
+          </div>
+        </div>
+        <div class="fabric-slide">
+          <div class="fabric-swatch swatch-2"></div>
+        </div>
+      </div>
+
+      <div class="collection-card">
+        <div class="card-bg bg-2">
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <div class="card-category">Everyday</div>
+            <div class="card-name">Soft Neutrals</div>
+            <div class="card-price">From $85</div>
+          </div>
+        </div>
+        <div class="fabric-slide">
+          <div class="fabric-swatch swatch-3"></div>
+        </div>
+      </div>
+
+      <div class="collection-card">
+        <div class="card-bg bg-5">
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <div class="card-category">Accessories</div>
+            <div class="card-name">Gold Hour</div>
+            <div class="card-price">From $65</div>
+          </div>
+        </div>
+        <div class="fabric-slide">
+          <div class="fabric-swatch swatch-4"></div>
+        </div>
+      </div>
+
+      <div class="collection-card">
+        <div class="card-bg bg-4">
+          <div class="card-overlay"></div>
+          <div class="card-info">
+            <div class="card-category">Outerwear</div>
+            <div class="card-name">The Coat Edit</div>
+            <div class="card-price">From $320</div>
+          </div>
+        </div>
+        <div class="fabric-slide">
+          <div class="fabric-swatch swatch-5"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND STORY -->
+  <section class="brand-story" id="about">
+    <div class="story-left">
+      <div class="story-number">10</div>
+      <h2>Fashion as<br><em>philosophy</em>,<br>not trend.</h2>
+    </div>
+    <div class="story-right">
+      <p>MAISON was founded on a single belief — that clothing should outlast seasons. We design for people who buy less and wear more, who choose quality over quantity, and who understand that true style is never loud.</p>
+      <p>Every garment is ethically produced in small batches. We use natural fibres, work with local artisans, and ensure every piece is made to last a decade, not a season.</p>
+      <div class="story-stats">
+        <div>
+          <div class="story-stat-num">10+</div>
+          <div class="story-stat-label">Years of craft</div>
+        </div>
+        <div>
+          <div class="story-stat-num">42</div>
+          <div class="story-stat-label">Artisan partners</div>
+        </div>
+        <div>
+          <div class="story-stat-num">100%</div>
+          <div class="story-stat-label">Natural fibres</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured-products" id="product">
+    <div class="section-header">
+      <div>
+        <div class="section-label">Just dropped</div>
+        <h2 class="section-title">New <em>Arrivals</em></h2>
+      </div>
+      <a class="view-all" href="#">See All New In</a>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-bg pbg-1">
+            <span class="product-label">Linen</span>
+          </div>
+          <button class="product-add">Add to Bag</button>
+        </div>
+        <div class="product-info">
+          <div class="product-type">Tops</div>
+          <div class="product-name">Linen Oversized Shirt</div>
+          <div class="product-price">$145</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-bg pbg-2">
+            <span class="product-label">Wool</span>
+          </div>
+          <button class="product-add">Add to Bag</button>
+        </div>
+        <div class="product-info">
+          <div class="product-type">Outerwear</div>
+          <div class="product-name">Merino Wool Coat</div>
+          <div class="product-price">$480</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-bg pbg-3">
+            <span class="product-label">Silk</span>
+          </div>
+          <button class="product-add">Add to Bag</button>
+        </div>
+        <div class="product-info">
+          <div class="product-type">Dresses</div>
+          <div class="product-name">Silk Slip Dress</div>
+          <div class="product-price">$290</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">
+          <div class="product-bg pbg-4">
+            <span class="product-label">Cotton</span>
+          </div>
+          <button class="product-add">Add to Bag</button>
+        </div>
+        <div class="product-info">
+          <div class="product-type">Bottoms</div>
+          <div class="product-name">Wide Leg Trousers</div>
+          <div class="product-price">$195</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div>
+      <h2>Stay<br><em>ahead</em> of<br>the season.</h2>
+      <p>Join our community. Be the first to know about new collections, exclusive drops, and styling notes from our creative team.</p>
+    </div>
+    <div>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="text" placeholder="Your name" />
+        <input class="newsletter-input" type="email" placeholder="Your email address" />
+        <button class="newsletter-submit">Subscribe to Newsletter →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">MAISON</div>
+        <p class="footer-tagline">Timeless clothing for considered living. Crafted with intention, worn with purpose.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#product">New Arrivals</a>
+        <a href="#collections">Collections</a>
+        <a href="#">Sale</a>
+        <a href="#">Gift Cards</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">Our Story</a>
+        <a href="#">Sustainability</a>
+        <a href="#">Careers</a>
+        <a href="#">Press</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">Shipping & Returns</a>
+        <a href="#">Size Guide</a>
+        <a href="#">Care Instructions</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Ralph_Dev · Maison · All rights reserved.</div>
+      <div>
+        <a href="#" target="_self">Instagram</a> · 
+        <a href="#" target="_self">Pinterest</a> · 
+        <a href="#" target="_self">X-Twiiter</a> · 
+        <a href="#" target="_self">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      setTimeout(() => {
+        ring.style.left = e.clientX + 'px';
+        ring.style.top = e.clientY + 'px';
+      }, 80);
+    });
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        ring.style.transform = 'translate(-50%, -50%) scale(1.8)';
+        ring.style.opacity = '0.3';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.style.transform = 'translate(-50%, -50%) scale(1)';
+        ring.style.opacity = '0.5';
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.collection-card, .product-card, .story-stat-num').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
